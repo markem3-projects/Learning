@@ -16,3 +16,4 @@ Then(/^I should see a pop up menu with an item added to the cart$/, async () => 
     const orderName = await $('span[class=orderName]');
     await expect(orderName).toExist();
 });
+

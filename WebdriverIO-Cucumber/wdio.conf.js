@@ -23,6 +23,15 @@ exports.config = {
     specs: [
         './features/**/*.feature'
     ],
+
+    // suites: {
+    //     order: [
+    //         './features/order.steps.js'
+    //     ],
+    //     sort: [
+    //         './featuresf/sort.steps.js'
+    //     ]
+    // },
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
