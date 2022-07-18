@@ -2,29 +2,14 @@ pipeline {
     agent any
     
     stages {
-        stage('Build') {
+        stage('Checkout repository') {
             steps {
-                echo "Building.."
-                sh '''
-                echo "doing build stuff.."
-                '''
+                echo "Checking out..."
+                git branch: 'develop',
+                    credentialsId: '940dd96e-2ac5-44b4-8030-e561a9991a87',
+                    url: 'ssh://git@github.com:Testers-of-JavaScript/JS-Testing-Capgemini.git'
             }
         }
-        stage('Test') {
-            steps {
-                echo "Testing.."
-                sh '''
-                echo "doing test stuff.."
-                '''
-            }
-        }
-        stage('Deliver') {
-            steps {
-                echo 'Deliver....'
-                sh '''
-                echo "doing delivery stuff.."
-                '''
-            }
-        }
+        
     }
 }
