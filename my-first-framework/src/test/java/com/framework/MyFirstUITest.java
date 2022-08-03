@@ -1,9 +1,6 @@
 package com.framework;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,38 +16,40 @@ public class MyFirstUITest {
 
 
     public static final String BASE_URL = "https://github.com/";
-    public static final String USERNAME = "andrejs-ps";
-    WebDriver driver;
-    @BeforeEach
-    void setup() {
+    //public static final String USERNAME = "andrejs-ps";
+    static WebDriver driver;
+    @BeforeAll
+    static void setup() {
         // Create the driver object
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions().addArguments("start-fullscreen");
-        WebDriver driver = new ChromeDriver(options);
+        driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
-    @AfterEach
-    void cleanUp() {
+    @AfterAll
+    static void cleanUp() {
         driver.close();
     }
 
     @Test
     void userNameIsCorrectOnOverviewTab() {
         // Arrange
-        driver.get(BASE_URL + USERNAME);
+        String user = "andrejs-ps";
+        driver.get(BASE_URL + user);
 
         // Act
         String actualUserName = driver.findElement(By.className("p-nickname")).getText();
 
         // Assert
-        assertEquals(USERNAME, actualUserName);
+        assertEquals(user, actualUserName);
     }
 
     @Test
     void repoLinkGoesToCorrectRepo() throws InterruptedException {
         // Arrange
-        driver.get(BASE_URL + USERNAME);
+        String user = "andrejs-ps";
+        driver.get(BASE_URL + user);
 
         // Act
         String repo = "automated-tests-in-java-with-fluent-interface-using-webdriver-selenium";
@@ -66,7 +65,8 @@ public class MyFirstUITest {
     @Test
     void numberOfReposMatchesTheCount() throws InterruptedException {
         // Arrange
-        driver.get(BASE_URL + USERNAME);
+        String user = "andrejs-ps";
+        driver.get(BASE_URL + user);
 
         // Act
         driver.findElement(By.cssSelector("a[data-tab-item=repositories]")).click();
